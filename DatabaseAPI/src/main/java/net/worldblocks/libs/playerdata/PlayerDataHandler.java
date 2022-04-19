@@ -26,7 +26,7 @@ public class PlayerDataHandler {
 
     public void refreshAll() {
         for (Player player : Bukkit.getOnlinePlayers()) {
-            PlayerDataCache cache = new PlayerDataCache(player);
+            PlayerDataCache cache = new PlayerDataCache(player, sqlClient, table);
             cache.refreshFromDatabase(sqlClient, table);
             cacheMap.put(player.getUniqueId(), cache);
         }
@@ -35,7 +35,7 @@ public class PlayerDataHandler {
     public PlayerDataCache getCachedData(UUID uuid) {
         PlayerDataCache cache = cacheMap.get(uuid);
         if (cache == null) {
-            cache = new PlayerDataCache(uuid);
+            cache = new PlayerDataCache(uuid, sqlClient, table);
             cache.refreshFromDatabase(sqlClient, table);
             cacheMap.put(uuid, cache);
         }
@@ -46,7 +46,7 @@ public class PlayerDataHandler {
         UUID uuid = player.getUniqueId();
         PlayerDataCache cache = cacheMap.get(uuid);
         if (cache == null) {
-            cache = new PlayerDataCache(uuid);
+            cache = new PlayerDataCache(uuid ,sqlClient, table);
             cache.refreshFromDatabase(sqlClient, table);
             cacheMap.put(uuid, cache);
         }
@@ -57,7 +57,7 @@ public class PlayerDataHandler {
         try {
             PlayerDataCache cache = cacheMap.get(uuid);
             if (cache == null) {
-                cache = new PlayerDataCache(uuid);
+                cache = new PlayerDataCache(uuid, sqlClient, table);
                 cache.refreshFromDatabase(sqlClient, table);
                 cacheMap.put(uuid, cache);
             }
@@ -74,7 +74,7 @@ public class PlayerDataHandler {
         try {
             PlayerDataCache cache = cacheMap.get(uuid);
             if (cache == null) {
-                cache = new PlayerDataCache(uuid);
+                cache = new PlayerDataCache(uuid, sqlClient, table);
                 cache.refreshFromDatabase(sqlClient, table);
                 cacheMap.put(uuid, cache);
             }

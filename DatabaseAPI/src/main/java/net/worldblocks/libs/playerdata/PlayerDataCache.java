@@ -17,11 +17,17 @@ public class PlayerDataCache {
 
     private UUID uuid;
     private Map<String, Object> dataMap = new HashMap<>();
-    public PlayerDataCache(UUID uuid) {
+    public PlayerDataCache(UUID uuid, SqlClient sqlClient, String table) {
+        if (!sqlClient.keyExists(table, "uuid", uuid.toString())) {
+            sqlClient.insertData(table, new PostgresData("uuid", uuid.toString()));
+        }
         this.uuid = uuid;
     }
 
-    public PlayerDataCache(Player player) {
+    public PlayerDataCache(Player player, SqlClient sqlClient, String table) {
+        if (!sqlClient.keyExists(table, "uuid", uuid.toString())) {
+            sqlClient.insertData(table, new PostgresData("uuid", uuid.toString()));
+        }
         this.uuid = player.getUniqueId();
     }
 
