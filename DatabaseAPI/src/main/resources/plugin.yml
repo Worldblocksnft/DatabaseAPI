@@ -1,0 +1,8 @@
+name: DatabaseAPI
+version: '${project.version}'
+main: net.worldblocks.libs.DatabaseAPI
+api-version: 1.18
+prefix: DatabaseAPI
+authors: [ Baguette ]
+description: A unified Database API for PaperSpigot usage.
+website: worldblocks.net/libs
